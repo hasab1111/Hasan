@@ -1,0 +1,385 @@
+/* =====================================
+   WORLD DIGITAL CLOCK
+   Modern Design
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Cairo:wght@400;700;900&display=swap');
+
+:root {
+    --primary: #ff4d8d;
+    --secondary: #7d5fff;
+    --bg: #0a0e27;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text: #ffffff;
+    --text-secondary: #b0b0d9;
+    --accent: #ffd166;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0f0f25 100%);
+    color: var(--text);
+    font-family: 'Cairo', 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    border-radius: 50px;
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.header h1 {
+    font-size: 48px;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* Clocks Grid */
+.clocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Clock Card */
+.clock-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.clock-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.clock-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 77, 141, 0.3);
+    box-shadow: 0 20px 50px rgba(255, 77, 141, 0.1);
+}
+
+/* Clock Header */
+.clock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.clock-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.timezone {
+    background: rgba(255, 77, 141, 0.2);
+    color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Digital Clock */
+.digital-clock {
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 77, 141, 0.3);
+}
+
+.digital-clock .hours,
+.digital-clock .minutes,
+.digital-clock .seconds {
+    display: inline-block;
+    min-width: 50px;
+}
+
+.digital-clock .separator {
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0.3; }
+}
+
+/* Analog Clock */
+.analog-clock {
+    width: 120px;
+    height: 120px;
+    border: 4px solid rgba(255, 77, 141, 0.3);
+    border-radius: 50%;
+    position: relative;
+    margin: 20px auto;
+    background: radial-gradient(circle, rgba(125, 95, 255, 0.1), rgba(10, 14, 39, 0.5));
+    box-shadow: inset 0 0 20px rgba(255, 77, 141, 0.1), 0 0 20px rgba(255, 77, 141, 0.1);
+}
+
+/* Clock Numbers */
+.analog-clock::before {
+    content: '12';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.analog-clock::after {
+    content: '6';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Clock Hands */
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.hand.hour {
+    width: 4px;
+    height: 30px;
+    margin-left: -2px;
+    background: linear-gradient(to top, var(--primary), rgba(255, 77, 141, 0.5));
+}
+
+.hand.minute {
+    width: 3px;
+    height: 40px;
+    margin-left: -1.5px;
+    background: linear-gradient(to top, var(--secondary), rgba(125, 95, 255, 0.5));
+}
+
+.hand.second {
+    width: 2px;
+    height: 45px;
+    margin-left: -1px;
+    background: var(--accent);
+}
+
+.center {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Date */
+.date {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* Local Time Card */
+.local-time-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    animation: fadeInUp 1s ease;
+}
+
+.local-time-card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.local-time {
+    font-size: 64px;
+    font-weight: 900;
+    font-family: 'Courier New', monospace;
+    margin: 20px 0;
+    letter-spacing: 3px;
+    color: white;
+    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.local-time .separator {
+    animation: blink 1s infinite;
+}
+
+.local-info {
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    .clocks-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .digital-clock {
+        font-size: 36px;
+    }
+
+    .analog-clock {
+        width: 100px;
+        height: 100px;
+    }
+
+    .hand.hour {
+        height: 25px;
+    }
+
+    .hand.minute {
+        height: 35px;
+    }
+
+    .hand.second {
+        height: 40px;
+    }
+
+    .local-time {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .clocks-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .clock-card {
+        padding: 20px;
+    }
+
+    .digital-clock {
+        font-size: 32px;
+    }
+
+    .local-time-card {
+        padding: 25px;
+    }
+
+    .local-time {
+        font-size: 40px;
+    }
+}
